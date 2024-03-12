@@ -15,19 +15,20 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
-public class Auth implements Serializable {
+public class User implements Serializable {
     @Id
     private String id;
+    private String authId;
     private String username;
     private String password;
     private String email;
+    private String name;
+    private String surname;
+    private String phone;
+    private String address;
+    private String avatar;
     private Long createAt;
     private Long updateAt;
     private EState state;
-    private String activationCode;
-
-
-
-
 
 }

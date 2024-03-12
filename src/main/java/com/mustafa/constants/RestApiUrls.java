@@ -9,9 +9,12 @@ public class RestApiUrls {
     private static final String ROOT = DEV + VERSION;
 
     public static final String AUTH = ROOT + "/auth";
+    public static final String USER = ROOT + "/user";
 
     public static final String REGISTER = "/register";
     public static final String LOGIN = "/login";
+    public static final String ACTIVATE_STATUS = "/activateStatus";
+    public static final String UPDATE = "/update";
 
 
 

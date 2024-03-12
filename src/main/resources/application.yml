@@ -6,6 +6,7 @@ spring:
     mongodb:
       host: localhost
       port: 27021
-      database: OtelKiralamaAuth
+      database: OtelKiralama
       username: bilgeMustafa
       password: bilgeMustafa*
+
