@@ -1,6 +1,5 @@
 package com.mustafa.domain;
 
-import com.mustafa.utility.enums.EState;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -15,21 +14,15 @@ import java.io.Serializable;
 @AllArgsConstructor
 @NoArgsConstructor
 @Document
-public class User implements Serializable {
+public class Comment implements Serializable {
     @Id
     private String id;
-    private String authId;
-    private String username;
-    private String password;
-    private String email;
-    private String name;
-    private String surname;
-    private String phone;
-    private String address;
-    private String avatar;
+    private String userId;
+    private String hotelId;
+    private String comment;
+    private Long date;
+    private boolean isActive;
     private Long createAt;
     private Long updateAt;
-    private EState state;
-    private String about;
 
 }

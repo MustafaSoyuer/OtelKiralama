@@ -37,6 +37,7 @@ public class AuthService {
         User user = User.builder()
                 .authId(auth.getId())
                 .email(dto.getEmail())
+                .username(dto.getUsername())
                 .build();
         userRepository.save(user);
         return AuthMapper.INSTANCE.fromAuthToRegisterResponseDto(auth);
@@ -59,7 +60,6 @@ public class AuthService {
 
     public Boolean activateStatus(ActivateStatusRequestDto dto) {
         Optional<Auth> optionalAuth = authRepository.findById((dto.getId()));
-        System.out.println("-----------"+optionalAuth);
         if(optionalAuth.isEmpty()){
             throw new AuthException(ErrorType.USER_NOT_FOUND);
         }
@@ -67,12 +67,12 @@ public class AuthService {
             optionalAuth.get().setState(EState.ACTIVE);
             Optional<User> optionalUser = userRepository.findByAuthId(optionalAuth.get().getId());
 
-            System.out.println("**********"+optionalUser);
             if (optionalUser.isEmpty()) {
                 throw new AuthException(ErrorType.USER_NOT_FOUND);
             }
             optionalUser.get().setState(EState.ACTIVE);
             authRepository.save(optionalAuth.get());
+            userRepository.save(optionalUser.get());
             return true;
         } else {
             throw new AuthException(ErrorType.ACTIVATION_CODE_ERROR);

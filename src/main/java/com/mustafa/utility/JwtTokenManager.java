@@ -18,12 +18,13 @@ public class JwtTokenManager {
 
     private final String SECRETKEY = "QBBo6MNSm6xat+6B%zHCL_sBev2e~=KEOfdqk(ihaAj3Kuv9JX"; //255^6 ihtimal -> 3^6*100^6 ->81.000.000.000.000 / 3.400.000.000saniyede ->27.000sn
     private final String ISSUER = "Java13Auth";
+    private final String AUDIENCE = "Java13AuthAudience";
     private final Long EXDATE = 1000L * 60 * 5 ; // 5 dk
 
     public Optional<String> createToken(String authId){
         String token;
         try{
-            token = JWT.create().withAudience()
+            token = JWT.create().withAudience(AUDIENCE)
                     .withClaim("authid", authId)
                     .withIssuer(ISSUER) //token sahibi
                     .withIssuedAt(new Date()) //oluşma zamanı
@@ -52,16 +53,16 @@ public class JwtTokenManager {
         }
     }
 
-    public Optional<Long> getIdFromToken(String token){
+    public Optional<String> getIdFromToken(String token){
         try {
             Algorithm algorithm = Algorithm.HMAC512(SECRETKEY);
-            JWTVerifier verifier = JWT.require(algorithm).withIssuer(ISSUER).withAudience().build();
+            JWTVerifier verifier = JWT.require(algorithm).withIssuer(ISSUER).withAudience(AUDIENCE).build();
             DecodedJWT decodedJWT = verifier.verify(token);
 
             if(decodedJWT == null){
                 throw new UserException(ErrorType.INVALID_TOKEN);
             }
-            Long id = decodedJWT.getClaim("id").asLong();
+            String id = decodedJWT.getClaim("authid").asString();
             return Optional.of(id);
 
         } catch (Exception e) {

@@ -10,3 +10,7 @@ spring:
       username: bilgeMustafa
       password: bilgeMustafa*
 
+myapplication:
+  redis:
+    host: localhost
+
