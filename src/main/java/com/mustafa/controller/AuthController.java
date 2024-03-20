@@ -12,6 +12,7 @@ import com.mustafa.utility.JwtTokenManager;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -26,18 +27,20 @@ public class AuthController {
     private final JwtTokenManager jwtTokenManager;
 
     @PostMapping(REGISTER)
+    @CrossOrigin("*")
     public ResponseEntity<RegisterResponseDto> register(@RequestBody @Valid RegisterRequestDto dto){
         return ResponseEntity.ok(authService.register(dto));
     }
 
     @PostMapping(LOGIN)
+    @CrossOrigin("*")
     public ResponseEntity<String> login(@RequestBody LoginRequestDto dto){
         return ResponseEntity.ok(authService.login(dto));
     }
 
-    @PostMapping(ACTIVATE_STATUS)
-    public ResponseEntity<Boolean> activateStatus(@RequestBody ActivateStatusRequestDto dto){
-        return ResponseEntity.ok(authService.activateStatus(dto));
+    @GetMapping(ACTIVATE_STATUS)
+    public ResponseEntity<Boolean> activateStatus(@RequestParam String email, @RequestParam String activationCode){
+        return ResponseEntity.ok(authService.activateStatus(email, activationCode));
     }
 
 }

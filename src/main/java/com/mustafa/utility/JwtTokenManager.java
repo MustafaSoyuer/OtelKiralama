@@ -39,14 +39,14 @@ public class JwtTokenManager {
     }
 
 
-    public Optional<Long> validateToken(String token){
+    public Optional<String> validateToken(String token){
         try {
             Algorithm algorithm = Algorithm.HMAC512(SECRETKEY);
             JWTVerifier verifier = JWT.require(algorithm).withIssuer(ISSUER).build();
             DecodedJWT decodedJWT = verifier.verify(token);
             if(decodedJWT == null)
                 return Optional.empty();
-            Long authId = decodedJWT.getClaim("authid").asLong();
+            String authId = decodedJWT.getClaim("authid").asString();
             return Optional.of(authId);
         }catch (Exception e){
             return Optional.empty();

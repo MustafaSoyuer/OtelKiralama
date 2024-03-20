@@ -9,8 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ActivateStatusRequestDto {
+public class AddFavoriteRequestDto {
+    private String token;
+    private String otelId;
 
-    private String email;
-    private String activationCode;
 }

@@ -3,6 +3,7 @@ package com.mustafa.service;
 import com.mustafa.domain.Otel;
 import com.mustafa.domain.User;
 import com.mustafa.domain.UserFavoriOtel;
+import com.mustafa.dto.request.AddFavoriteRequestDto;
 import com.mustafa.dto.request.UserProfileUpdateRequestDto;
 import com.mustafa.dto.response.FindByTokenResponseDto;
 import com.mustafa.exception.ErrorType;
@@ -73,12 +74,12 @@ public class UserService {
                 .build();
     }
 
-    public Boolean addFavorite(String otelId, String token) {
-        Optional<Otel> optionalOtel = otelRepository.findById(otelId);
+    public Boolean addFavorite(AddFavoriteRequestDto dto) {
+        Optional<Otel> optionalOtel = otelRepository.findById(dto.getOtelId());
         if (optionalOtel.isEmpty()){
             throw new UserException(ErrorType.OTEL_NOT_FOUND);
         }
-        Optional<String> authId = jwtTokenManager.getIdFromToken(token);
+        Optional<String> authId = jwtTokenManager.getIdFromToken(dto.getToken());
 
         Optional<User> optionalUser = userRepository.findByAuthId((authId.get()));
         if (optionalUser.isEmpty()){

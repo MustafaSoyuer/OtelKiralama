@@ -15,6 +15,8 @@
     docker run  --name redis-gui -d -p 8001:8001 redislabs/redisinsight:1.14.0
 ```
 
+    docker build -t mustafasoyuer/otelkiralama:v.0.5 .
+
 /** ********************************
 * Uygulamada olacak sayfalar ve Kullanılacak end-point listesi
 *  +----- auth/dologin (giriş için kullanılacak ve token dönecek)

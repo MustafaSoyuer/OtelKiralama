@@ -7,6 +7,7 @@ import com.mustafa.service.OtelService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class OtelController {
     private final OtelService otelService;
 
     @PostMapping(SAVE)
+    @CrossOrigin("*")
     public ResponseEntity<String> saveOtel(@RequestBody SaveOtelRequestDto dto) {
         return ResponseEntity.ok(otelService.saveOtel(dto));
     }

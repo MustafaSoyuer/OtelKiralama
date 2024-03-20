@@ -12,6 +12,7 @@ public class RestApiUrls {
     public static final String USER = ROOT + "/user";
     public static final String OTEL = ROOT + "/otel";
     public static final String OZELLIK = ROOT + "/ozellik";
+    public static final String COMMENT = ROOT + "/comment";
 
     public static final String REGISTER = "/register";
     public static final String LOGIN = "/login";

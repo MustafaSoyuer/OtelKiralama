@@ -1,5 +1,6 @@
 package com.mustafa.domain;
 
+import com.mustafa.utility.enums.ERole;
 import com.mustafa.utility.enums.EState;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,6 +26,9 @@ public class Auth implements Serializable {
     private Long updateAt;
     private EState state;
     private String activationCode;
+
+    @Builder.Default
+    private ERole role = ERole.USER;
 
 
 

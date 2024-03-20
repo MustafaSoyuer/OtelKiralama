@@ -64,7 +64,6 @@ public class OtelService {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Cacheable(value = "find-all")
@@ -75,11 +74,11 @@ public class OtelService {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
     }
 
     @Cacheable(value = "find-by-search", key = "#search.toUpperCase()")
     public List<Otel> findBySearch(String search) {
         return otelRepository.findByGenelAciklamaContainingIgnoreCase(search);
     }
+
 }

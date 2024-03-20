@@ -9,8 +9,9 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ActivateStatusRequestDto {
+public class SaveCommentRequestDto {
 
-    private String email;
-    private String activationCode;
+    private String userId;
+    private String hotelId;
+    private String comment;
 }

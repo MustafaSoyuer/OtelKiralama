@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: otelkiralama
+  profiles:
+    active: development
